@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1793818862154-atwnfq",
+    "customerName": "Hanin Baderddin",
+    "phone": "81984172",
+    "orderType": "Delivery",
+    "deliveryLocation": "nabatieh al maslakh street",
+    "details": "9pm to 9:30 pm",
+    "additionalDetails": "allergie to soy sauce",
+    "items": [
+      {
+        "name": "SALT Chocolate Fondant",
+        "quantity": 1,
+        "price": 9
+      },
+      {
+        "name": "SALT Mare Linguine",
+        "quantity": 2,
+        "price": 18
+      }
+    ],
+    "total": 49,
+    "createdAt": "2026-11-04T19:01:02.154Z"
+  }
+]
