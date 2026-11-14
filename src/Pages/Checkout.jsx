@@ -13,7 +13,6 @@ import {
 import { useCart } from "../context/CartContext";
 import { saveOrderLocally } from "../Data/orderStorage";
 
-const API_URL = "http://localhost:5002";
 const DELIVERY_FEE = 4;
 
 export default function Checkout() {
@@ -54,7 +53,7 @@ export default function Checkout() {
         }));
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         setError("");
 
@@ -119,47 +118,20 @@ export default function Checkout() {
         try {
             setSubmitting(true);
 
-            const response = await fetch(`${API_URL}/orders`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(orderData)
-            });
+            const savedOrder = saveOrderLocally(orderData);
 
-            const savedOrder = await response.json();
-
-            if (!response.ok) {
-                throw new Error(
-                    savedOrder.message ||
-                    "Unable to submit your order."
-                );
-            }
-
-            saveOrderLocally(savedOrder);
             setPlacedOrder(savedOrder);
             clearCart();
 
             showNotification(
                 "Your order was submitted successfully."
             );
+        } catch (error) {
+            console.error("Error saving order:", error);
 
-        } catch {
-            const browserOrder = saveOrderLocally({
-                ...orderData,
-                id: `${Date.now()}-${Math.random()
-                    .toString(36)
-                    .slice(2, 8)}`,
-                createdAt: new Date().toISOString()
-            });
-
-            setPlacedOrder(browserOrder);
-            clearCart();
-
-            showNotification(
-                "Your order was saved on this device."
+            setError(
+                "Unable to save your order. Please try again."
             );
-
         } finally {
             setSubmitting(false);
         }

@@ -7,6 +7,7 @@ import { Feedback } from "./Pages/Feedback";
 import Checkout from "./Pages/Checkout";
 import { Toast } from "./Components/Toast";
 import { Admin } from "./Pages/Admin";
+import { AboutUs } from "./Pages/AboutUs";
 import { isAdminAuthenticated, Login } from "./Pages/Login";
 
 const ProtectedAdminRoute = ({ children }) => (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/feedback" element={<Feedback />} />
+              <Route path="/About" element={<AboutUs />} />
               <Route path="/login" element={<Login />} />
               <Route path="/admin/orders" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
             </Routes>
