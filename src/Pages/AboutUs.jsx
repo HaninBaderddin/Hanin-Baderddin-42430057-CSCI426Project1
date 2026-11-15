@@ -21,14 +21,7 @@ export const AboutUs = () => {
             <div className="mx-auto max-w-6xl">
 
                 {/* Back Button */}
-                <button
-                    type="button"
-                    onClick={() => navigate("/")}
-                    className="mb-10 inline-flex items-center gap-2 rounded-full border border-[#073f7020] bg-[#fffdf8] px-5 py-2.5 text-sm font-medium text-[#073f70] transition hover:bg-[#f0ede4]"
-                >
-                    <ArrowLeft size={17} />
-                    Back to Menu
-                </button>
+                
 
                 {/* Welcome */}
                 <div className="mb-16 rounded-3xl bg-[#e7f0ee] px-6 py-14 text-center sm:px-12">

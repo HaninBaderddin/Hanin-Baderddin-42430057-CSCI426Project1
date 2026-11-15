@@ -25,7 +25,7 @@ export const Home = () => {
         "All",
         "Main Dishes",
         "Appetizers",
-        "Desserts",
+        "Dessert",
         "Drinks"
     ];
 

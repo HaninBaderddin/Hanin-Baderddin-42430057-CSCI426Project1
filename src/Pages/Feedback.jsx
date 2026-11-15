@@ -1,5 +1,16 @@
 import { useState } from "react";
 import { Heart } from "lucide-react";
+import {
+    ArrowLeft,
+    Banknote,
+    ShoppingBag,
+    Truck,
+    Utensils,
+    Waves,
+    Fish
+} from "lucide-react";
+
+import { useNavigate } from "react-router-dom";
 
 export const FEEDBACK_STORAGE_KEY = "salt-customer-feedback";
 
@@ -15,6 +26,8 @@ export const getFeedback = () => {
 
 
 export const Feedback = () => {
+
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({ name: "", comment: "" });
     const [message, setMessage] = useState("");
     const [feedback, setFeedback] = useState(getFeedback);
@@ -43,11 +56,19 @@ export const Feedback = () => {
         localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify([newFeedback, ...getFeedback()]));
         setFeedback((currentFeedback) => [newFeedback, ...currentFeedback]);
         setFormData({ name: "", comment: "" });
-        setMessage("Thank you — your feedback has been sent.");
+        setMessage("Thank you! your feedback has been sent.");
     };
 
     return (
         <div className="min-h-[70vh] bg-[#fffdf8] px-6 py-12 sm:px-10">
+            <button
+                type="button"
+                onClick={() => navigate("/")}
+                className="mb-10 inline-flex items-center gap-2 rounded-full border border-[#073f7020] bg-[#fffdf8] px-5 py-2.5 text-sm font-medium text-[#073f70] transition hover:bg-[#f0ede4]"
+            >
+                <ArrowLeft size={17} />
+                Back to Menu
+            </button>
             <div className="mx-auto max-w-xl rounded-2xl border border-[#073f7020] bg-white p-8 shadow-[0_8px_20px_rgb(7_63_112_/_8%)]">
                 <div className="text-center">
                     <Heart size={34} className="mx-auto text-[#074d86]" />
