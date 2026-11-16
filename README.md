@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# SALT - Restaurant Ordering Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+SALT is a restaurant ordering website developed as part of the CSCI426 Advanced Web Programming course at Lebanese International University (LIU).
 
-In the project directory, you can run:
+The website provides customers with an interactive experience where they can explore the restaurant's menu, add items to their cart, place orders, and provide feedback. It also includes an admin panel for managing orders and customer feedback.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React.js
+- JavaScript
+- Tailwind CSS
+- React Router
+- Lucide React Icons
+- Local Storage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+### Customer Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Browse the restaurant's menu.
+- Explore different food and drink categories.
+- View menu item details and prices.
+- Add items to the shopping cart.
+- Increase or decrease item quantities.
+- Remove items from the cart.
+- Place orders through the checkout page.
+- Choose between delivery, pickup, and dine-in.
+- Submit customer feedback.
+- Track order status.
 
-### `npm run build`
+### Admin Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Admin login.
+- View customer orders.
+- Update order statuses.
+- Delete orders.
+- View and manage customer feedback.
+- Edit admin account information.
+- View completed orders separately.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Pages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Home:** Main landing page of the restaurant.
+- **About Us:** Information about the restaurant.
+- **Cart:** Displays selected menu items.
+- **Checkout:** Allows customers to complete their orders.
+- **Feedback:** Allows customers to submit feedback.
+- **Login:** Admin authentication page.
+- **Admin Panel:** Provides order and feedback management.
 
-### `npm run eject`
+## Installation and Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. Clone the Repository
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/HaninBaderddin/Hanin-Baderddin-42430057-CSCI426Project1.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. Navigate to the Project Folder
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd Hanin-Baderddin-42430057-CSCI426Project1
+```
 
-## Learn More
+### 3. Install Dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 4. Run the Development Server
 
-### Code Splitting
+```bash
+npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Open the local URL displayed in your terminal to view the website.
 
-### Analyzing the Bundle Size
+## Data Storage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project uses the browser's Local Storage to store orders, customer feedback, and admin account information. No backend or external database is used.
 
-### Making a Progressive Web App
+## Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[View the project on GitHub](https://github.com/HaninBaderddin/Hanin-Baderddin-42430057-CSCI426Project1)
 
-### Advanced Configuration
+## Developer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Hanin Baderddin**
 
-### Deployment
+Computer Science Student  
+Lebanese International University (LIU)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Course
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+CSCI426 – Advanced Web Programming
