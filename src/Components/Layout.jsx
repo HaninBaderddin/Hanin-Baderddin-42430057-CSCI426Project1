@@ -62,7 +62,7 @@ export const Layout = ({ children }) => {
                             <span>+961 81 984 172</span>
                         </a>
                         <a
-                            href="https://www.instagram.com/your-account"
+                            href="https://www.instagram.com/haninbdrddin"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Follow SALT on Instagram"
