@@ -99,25 +99,23 @@ CSCI426 – Advanced Web Programming
 
 ## Screenshots
 
-## Screenshots
-
 ### Home Page
-![Home Page](screenshots/Home.png)
+![Home Page](src/screenshots/Home.png)
 
 ### About Us Page
-![About Us](screenshots/about.png)
+![About Us](src/screenshots/about.png)
 
 ### Cart Page
-![Cart](screenshots/cart.png)
+![Cart](src/screenshots/cart.png)
 
 ### Checkout Page
-![Checkout](screenshots/checkout.png)
+![Checkout](src/screenshots/checkout.png)
 
 ### Feedback Page
-![Feedback](screenshots/feedback.png)
+![Feedback](src/screenshots/feedback.png)
 
 ### Admin Login
-![Login](screenshots/login2.png)
+![Login](src/screenshots/login2.png)
 
 ### Admin Panel
-![Admin Panel](screenshots/admin.png)
+![Admin Panel](src/screenshots/admin.png)
