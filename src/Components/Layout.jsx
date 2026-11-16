@@ -6,7 +6,7 @@ export const Layout = ({ children }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { itemCount } = useCart();
-    const hasStandaloneLayout = location.pathname === "/login" || location.pathname.startsWith("/admin");
+    const hasStandaloneLayout = location.pathname === "/Login" || location.pathname.startsWith("/admin");
 
     if (hasStandaloneLayout) {
         return children;
