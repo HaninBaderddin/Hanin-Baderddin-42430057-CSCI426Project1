@@ -86,6 +86,12 @@ This project uses the browser's Local Storage to store orders, customer feedback
 
 [View the project on GitHub](https://github.com/HaninBaderddin/Hanin-Baderddin-42430057-CSCI426Project1)
 
+## Live Demo
+
+Visit the deployed website:
+
+https://hanin-baderddin-csci426-salt-restau-mu.vercel.app/
+
 ## Developer
 
 **Hanin Baderddin**
