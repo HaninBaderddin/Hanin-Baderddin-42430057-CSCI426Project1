@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+
 import {
     Trash2,
     ChevronDown,
@@ -124,8 +125,13 @@ export const Admin = () => {
 
     // Save the updated account
     const saveAccount = () => {
-        if (!editedUsername.trim() || !editedPassword.trim()) {
-            setAccountError("Please fill in both fields.");
+        if (
+            !editedUsername.trim() ||
+            !editedPassword.trim()
+        ) {
+            setAccountError(
+                "Please fill in both fields."
+            );
             return;
         }
 
@@ -136,7 +142,9 @@ export const Admin = () => {
         );
 
         if (usernameExists) {
-            setAccountError("This username is already used.");
+            setAccountError(
+                "This username is already used."
+            );
             return;
         }
 
@@ -207,19 +215,33 @@ export const Admin = () => {
     // Display orders in a table
     const renderOrdersTable = (orderList) => (
         <div className="w-full overflow-x-auto rounded-2xl border border-[#073f7020] bg-white shadow-[0_8px_20px_rgb(7_63_112_/_8%)]">
-
             <table className="min-w-full text-left text-sm">
-
                 <thead className="bg-[#f8f6ef] text-[#074d86]">
                     <tr>
-                        <th className="px-4 py-4">Customer</th>
-                        <th className="px-4 py-4">Order</th>
+                        <th className="px-4 py-4">
+                            Customer
+                        </th>
+
+                        <th className="px-4 py-4">
+                            Order
+                        </th>
+
                         <th className="px-4 py-4">
                             Type & Location
                         </th>
-                        <th className="px-4 py-4">Status</th>
-                        <th className="px-4 py-4">Details</th>
-                        <th className="px-4 py-4">Total</th>
+
+                        <th className="px-4 py-4">
+                            Status
+                        </th>
+
+                        <th className="px-4 py-4">
+                            Details
+                        </th>
+
+                        <th className="px-4 py-4">
+                            Total
+                        </th>
+
                         <th className="px-4 py-4"></th>
                     </tr>
                 </thead>
@@ -272,14 +294,16 @@ export const Admin = () => {
                                     }
                                     className="rounded-lg border border-[#073f7020] bg-white px-3 py-2 text-sm text-[#074d86]"
                                 >
-                                    {ORDER_STATUSES.map((status) => (
-                                        <option
-                                            key={status}
-                                            value={status}
-                                        >
-                                            {status}
-                                        </option>
-                                    ))}
+                                    {ORDER_STATUSES.map(
+                                        (status) => (
+                                            <option
+                                                key={status}
+                                                value={status}
+                                            >
+                                                {status}
+                                            </option>
+                                        )
+                                    )}
                                 </select>
                             </td>
 
@@ -307,19 +331,16 @@ export const Admin = () => {
                         </tr>
                     ))}
                 </tbody>
-
             </table>
         </div>
     );
 
     return (
         <div className="min-h-screen bg-[#fffdf8] px-4 py-10 sm:px-8">
-
             <div className="mx-auto w-full max-w-7xl">
 
                 {/* Dashboard Header */}
                 <div className="mb-8 text-center">
-
                     <h1 className="text-3xl font-bold text-[#074d86]">
                         Admin Dashboard
                     </h1>
@@ -327,15 +348,11 @@ export const Admin = () => {
                     <p className="mt-2 text-sm text-[#4780a0]">
                         Manage saved orders and customer feedback.
                     </p>
-
                 </div>
-
-                {/* Admin Information */}
 
                 {/* Admin Information */}
                 {currentAdmin && (
                     <section className="mb-12 w-full">
-
                         <h2 className="text-xl font-bold text-[#074d86]">
                             Admin Information
                         </h2>
@@ -345,9 +362,7 @@ export const Admin = () => {
                         </p>
 
                         <div className="mt-4 w-full overflow-x-auto rounded-2xl border border-[#073f7020] bg-white shadow-[0_8px_20px_rgb(7_63_112_/_8%)]">
-
                             <table className="w-full text-left text-sm">
-
                                 <thead className="bg-[#f8f6ef] text-[#074d86]">
                                     <tr>
                                         <th className="px-4 py-4">
@@ -370,7 +385,6 @@ export const Admin = () => {
 
                                 <tbody>
                                     <tr className="border-t border-[#073f7015] text-[#30678d]">
-
                                         <td className="px-4 py-4 font-semibold text-[#074d86]">
                                             {currentAdmin.fullName}
                                         </td>
@@ -410,7 +424,6 @@ export const Admin = () => {
                                         <td className="px-4 py-4">
                                             {isEditing ? (
                                                 <div className="flex gap-2">
-
                                                     <button
                                                         onClick={saveAccount}
                                                         className="rounded-lg bg-[#073f70] px-3 py-2 text-xs text-white hover:bg-[#074d86]"
@@ -426,7 +439,6 @@ export const Admin = () => {
                                                     >
                                                         Cancel
                                                     </button>
-
                                                 </div>
                                             ) : (
                                                 <button
@@ -438,12 +450,9 @@ export const Admin = () => {
                                                 </button>
                                             )}
                                         </td>
-
                                     </tr>
                                 </tbody>
-
                             </table>
-
                         </div>
 
                         {accountError && (
@@ -451,14 +460,11 @@ export const Admin = () => {
                                 {accountError}
                             </p>
                         )}
-
                     </section>
                 )}
 
-
                 {/* Orders */}
                 <section className="w-full">
-
                     <h2 className="text-xl font-bold text-[#074d86]">
                         Orders
                     </h2>
@@ -469,7 +475,6 @@ export const Admin = () => {
 
                     {/* Active Orders */}
                     <div className="mt-6">
-
                         <h3 className="mb-3 text-lg font-semibold text-[#30678d]">
                             Active Orders ({activeOrders.length})
                         </h3>
@@ -481,12 +486,10 @@ export const Admin = () => {
                         ) : (
                             renderOrdersTable(activeOrders)
                         )}
-
                     </div>
 
                     {/* Completed Orders */}
                     <div className="mt-6 w-full">
-
                         <button
                             type="button"
                             onClick={() =>
@@ -507,7 +510,6 @@ export const Admin = () => {
 
                         {showCompleted && (
                             <div className="mt-4 w-full">
-
                                 {completedOrders.length === 0 ? (
                                     <p className="rounded-2xl border border-[#073f7020] p-8 text-center text-sm text-[#4780a0]">
                                         No completed orders yet.
@@ -515,17 +517,13 @@ export const Admin = () => {
                                 ) : (
                                     renderOrdersTable(completedOrders)
                                 )}
-
                             </div>
                         )}
-
                     </div>
-
                 </section>
 
                 {/* Customer Feedback */}
                 <section className="mt-12 w-full">
-
                     <h2 className="text-xl font-bold text-[#074d86]">
                         Customer Feedback
                     </h2>
@@ -540,18 +538,21 @@ export const Admin = () => {
                         </p>
                     ) : (
                         <div className="mt-4 w-full overflow-x-auto rounded-2xl border border-[#073f7020] bg-white shadow-[0_8px_20px_rgb(7_63_112_/_8%)]">
-
                             <table className="min-w-full text-left text-sm">
-
                                 <thead className="bg-[#f8f6ef] text-[#074d86]">
                                     <tr>
-                                        <th className="px-4 py-4">Name</th>
+                                        <th className="px-4 py-4">
+                                            Name
+                                        </th>
+
                                         <th className="px-4 py-4">
                                             Comment
                                         </th>
+
                                         <th className="px-4 py-4">
                                             Submitted
                                         </th>
+
                                         <th className="px-4 py-4"></th>
                                     </tr>
                                 </thead>
@@ -589,14 +590,10 @@ export const Admin = () => {
                                         </tr>
                                     ))}
                                 </tbody>
-
                             </table>
-
                         </div>
                     )}
-
                 </section>
-
             </div>
         </div>
     );
