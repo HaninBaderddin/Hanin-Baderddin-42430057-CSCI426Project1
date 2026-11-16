@@ -96,3 +96,26 @@ Lebanese International University (LIU)
 ## Course
 
 CSCI426 – Advanced Web Programming
+
+## Screenshots
+
+### Home Page
+![Home Page](Screenshots/Home.png)
+
+### About Us Page
+![About Us](Screenshots/about.png)
+
+### Cart Page
+![Cart](Screenshots/cart.png)
+
+### Checkout Page
+![Checkout](Screenshots/checkout.png)
+
+### Feedback Page
+![Feedback](Screenshots/feedback.png)
+
+### Login Page
+![Login](Screenshots/login2.png)
+
+### Admin Panel
+![Admin Panel](Screenshots/admin.png)
