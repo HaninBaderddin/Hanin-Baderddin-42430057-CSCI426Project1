@@ -5,9 +5,7 @@ import {
     Trash2,
     ChevronDown,
     ChevronUp,
-    Pencil,
-    Check,
-    X
+    Pencil
 } from "lucide-react";
 
 import {

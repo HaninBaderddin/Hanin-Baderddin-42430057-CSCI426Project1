@@ -1,12 +1,10 @@
 
 import {
-    ArrowLeft,
     Banknote,
     ShoppingBag,
     Truck,
     Utensils,
     Heart,
-    Waves,
     Fish
 } from "lucide-react";
 
