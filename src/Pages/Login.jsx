@@ -5,6 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 import ADMIN_USERS from "../Data/adminAccess";
 
+/*
+This function checks whether an administrator is currently logged in
+It retrieves the authentication value from Session Storage and compares it with the string 'true'. 
+If they match, it returns true, meaning the admin is logged in. 
+Otherwise, it returns false
+*/
 export const isAdminAuthenticated = () =>
     sessionStorage.getItem(
         "salt-admin-authenticated"
@@ -13,37 +19,48 @@ export const isAdminAuthenticated = () =>
 export const Login = () => {
     const navigate = useNavigate();
 
+    //the username and password entered by the user
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    //the state for error initially no errors
     const [error, setError] = useState("");
 
+
+    /*
+    event represents the form submission event.
+    preventDefault() so React can handle the submission without reloading the page.
+    */
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        //Here, we use the .find() method to search inside the ADMIN_USERS array.
         const admin = ADMIN_USERS.find(
             (user) =>
                 user.username === username &&
                 user.password === password
         );
-
+        //if the username and pass entered are same of ones in my ADMIN_USERS , admin will be true,
+        // we save the state in session storage that the admin is authenticated
         if (admin) {
             sessionStorage.setItem(
                 "salt-admin-authenticated",
                 "true"
-            );
+            ); //This saves the value "true" in sessionStorage under the key "salt-admin-authenticated". It indicates that the admin has successfully logged in.
 
             sessionStorage.setItem(
                 "salt-admin-name",
                 admin.fullName
-            );
+            );//This saves the full name of the admin who logged in.
 
             navigate("/admin/orders", {
                 replace: true
             });
 
-            return;
+            return; //we navigate to the admin page and we exit the function
         }
 
+        //if admin is false it means we have an error, we set it 
         setError("Incorrect username or password.");
     };
 
@@ -69,6 +86,7 @@ export const Login = () => {
                     Sign in to view and manage orders.
                 </p>
 
+                {/* username label */}
                 <label className="mt-7 block text-sm font-semibold text-[#30678d]">
                     Username
 
@@ -82,7 +100,7 @@ export const Login = () => {
                         className="mt-2 w-full rounded-lg border border-[#073f7020] bg-[#fffdf8] px-4 py-3 font-normal outline-none transition focus:border-[#073f70] focus:ring-2 focus:ring-[#073f70]/10"
                     />
                 </label>
-
+                {/*password label */}
                 <label className="mt-5 block text-sm font-semibold text-[#30678d]">
                     Password
 
@@ -97,7 +115,7 @@ export const Login = () => {
                         className="mt-2 w-full rounded-lg border border-[#073f7020] bg-[#fffdf8] px-4 py-3 font-normal outline-none transition focus:border-[#073f70] focus:ring-2 focus:ring-[#073f70]/10"
                     />
                 </label>
-
+                {/* if error state have a values it means we have an error and we display it */}
                 {error && (
                     <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">
                         {error}

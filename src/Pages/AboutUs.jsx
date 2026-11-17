@@ -1,12 +1,5 @@
 
-import {
-    Banknote,
-    ShoppingBag,
-    Truck,
-    Utensils,
-    Heart,
-    Fish
-} from "lucide-react";
+import {Banknote,ShoppingBag,Truck,Utensils,Heart,Fish} from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -17,9 +10,6 @@ export const AboutUs = () => {
         <div className="min-h-screen bg-[#fffdf8] px-4 py-10 sm:px-8">
 
             <div className="mx-auto max-w-6xl">
-
-                {/* Back Button */}
-                
 
                 {/* Welcome */}
                 <div className="mb-16 rounded-3xl bg-[#e7f0ee] px-6 py-14 text-center sm:px-12">

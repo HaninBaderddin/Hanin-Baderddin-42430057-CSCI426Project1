@@ -1,12 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 
-import {
-    Minus,
-    Plus,
-    ShoppingBag,
-    Trash2
-} from "lucide-react";
+import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 
 import { useCart } from "../context/CartContext";
 
@@ -18,7 +13,7 @@ export const Cart = () => {
         updateQuantity,
         removeFromCart,
         clearCart
-    } = useCart();
+    } = useCart(); //we call all that from cart context
 
     const navigate = useNavigate();
 
@@ -36,6 +31,7 @@ export const Cart = () => {
                     </p>
                 </div>
 
+                {/* if the length of my cart is 0 it means the cart is empty we display it , else we display the items*/}
                 {cartItems.length === 0 ? (
                     <div className="flex flex-col items-center gap-4 py-16 text-center">
 

@@ -1,9 +1,6 @@
 
 import { useEffect, useState } from "react";
-import {
-    Heart,
-    PackageCheck
-} from "lucide-react";
+import { Heart, PackageCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import { MenuItemCard } from "../Components/MenuItemCard";
@@ -13,21 +10,22 @@ import { getLatestOrder } from "../Data/orderStorage";
 
 export const Home = () => {
     const navigate = useNavigate();
+    //to add to cart 
     const { addToCart } = useCart();
 
+    //those are my menu items
     const [menuItems, setMenuItems] = useState([]);
+
+    //initially my data is loading
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    //for the filter
     const [activeCategory, setActiveCategory] = useState("All");
+
+    //we get last order to display the status 
     const [latestOrder, setLatestOrder] = useState(null);
 
-    const categories = [
-        "All",
-        "Main Dishes",
-        "Appetizers",
-        "Dessert",
-        "Drinks"
-    ];
+    const categories = ["All", "Main Dishes", "Appetizers", "Dessert", "Drinks"];
 
     const visibleItems = activeCategory === "All"
         ? menuItems
@@ -35,6 +33,9 @@ export const Home = () => {
             (item) => item.category === activeCategory
         );
 
+    //we try to fetch the menu items from menuItems and store them in use state 
+    // if if fails we add the error to the error state 
+    //in both cases we must set loading to false because we are done loading    
     useEffect(() => {
         try {
             setMenuItems(MenuItems);
@@ -46,12 +47,20 @@ export const Home = () => {
         }
     }, []);
 
-    // Load and track the latest order
+    /* 
+    This useEffect is responsible for tracking the latest customer order on the Home Page. 
+    When the component first loads, we retrieve the latest order from localStorage and update the state. 
+    We also add an event listener that listens for an event called ordersUpdated, which is triggered when an order is modified. 
+    Additionally, we use setInterval to check for updates every 1.5 seconds. 
+    Finally, the cleanup function removes the event listener and clears the interval when the component unmounts
+    */
     useEffect(() => {
+
+        //we created a function loadLatesOrder that etrieves the latest order from browser storage and updates the React state with the retrieved order
+        //and we call it --> This ensures that if an order already exists, its information is loaded as soon as the customer opens the Home Page
         const loadLatestOrder = () => {
             setLatestOrder(getLatestOrder());
         };
-
         loadLatestOrder();
 
         window.addEventListener(
@@ -74,6 +83,7 @@ export const Home = () => {
         };
     }, []);
 
+    //the status and messages that should be displayed in the home , each status have atitle and a description
     const trackingMessages = {
         Accepted: {
             title: "Your order has been accepted!",
@@ -92,6 +102,12 @@ export const Home = () => {
         }
     };
 
+    /* 
+    This uses the ternary operator, which is a shorter way of writing an if/else statement.
+    It checks whether latestOrder exists:
+    - If latestOrder exists, it accesses the corresponding message using latestOrder.status.
+    - If there is no latest order, it assigns null.
+    */
     const trackingInfo = latestOrder
         ? trackingMessages[latestOrder.status]
         : null;
@@ -100,6 +116,7 @@ export const Home = () => {
         <div className="min-h-screen bg-[#fffdf8]">
 
             {/* Order Tracking Banner */}
+            {/*when trackingInfo is not null it means that we have one of the status active and we will show the banner */}
             {trackingInfo && (
                 <div className="px-4 pt-5 sm:px-8">
                     <div className="mx-auto flex max-w-7xl items-center gap-4 rounded-2xl border border-[#073f7020] bg-[#e7f0ee] p-5">
@@ -151,6 +168,7 @@ export const Home = () => {
 
                 </div>
 
+                {/* navigation bar that maps through the categories and the css is diferent for the chosen category */}
                 <nav
                     aria-label="Menu categories"
                     className="mb-8 flex flex-wrap justify-center gap-2"
@@ -160,17 +178,17 @@ export const Home = () => {
                             key={category}
                             type="button"
                             onClick={() => setActiveCategory(category)}
-                            className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                                activeCategory === category
-                                    ? "bg-[#073f70] text-white shadow-sm"
-                                    : "border border-[#073f7020] bg-white text-[#30678d] hover:border-[#073f70] hover:bg-[#e7f0ee]"
-                            }`}
+                            className={`rounded-full px-4 py-2 text-sm font-semibold transition ${activeCategory === category
+                                ? "bg-[#073f70] text-white shadow-sm"
+                                : "border border-[#073f7020] bg-white text-[#30678d] hover:border-[#073f70] hover:bg-[#e7f0ee]"
+                                }`}
                         >
                             {category}
                         </button>
                     ))}
                 </nav>
 
+                {/* loading / error / empty /menu items */}
                 {loading ? (
                     <p className="text-center text-[#073f70]/60">
                         Loading menu...
@@ -195,7 +213,7 @@ export const Home = () => {
                     </div>
                 )}
 
-                {/* About Us Button */}
+                {/* About Us Button navigates to about us page */}
                 <div className="mt-10 flex justify-center">
                     <button
                         type="button"
