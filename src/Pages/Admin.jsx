@@ -1,23 +1,10 @@
 
 import { useEffect, useState } from "react";
+import { Trash2, ChevronDown, ChevronUp, Pencil } from "lucide-react";
 
-import {
-    Trash2,
-    ChevronDown,
-    ChevronUp,
-    Pencil
-} from "lucide-react";
+import { FEEDBACK_STORAGE_KEY, getFeedback } from "./Feedback";
 
-import {
-    FEEDBACK_STORAGE_KEY,
-    getFeedback
-} from "./Feedback";
-
-import {
-    getStoredOrders,
-    removeStoredOrder,
-    updateStoredOrder
-} from "../Data/orderStorage";
+import { getStoredOrders, removeStoredOrder, updateStoredOrder } from "../Data/orderStorage";
 
 import ADMIN_USERS from "../Data/adminAccess";
 
@@ -50,13 +37,13 @@ export const Admin = () => {
 
     // Load admin accounts
     const [adminUsers, setAdminUsers] = useState(() => {
-        const savedUsers = localStorage.getItem(
+        const savedUsers = localStorage.getItem( //we use localStorage.getItem() to retrieve the admin accounts saved under ADMIN_STORAGE_KEY.
             ADMIN_STORAGE_KEY
         );
 
         return savedUsers
-            ? JSON.parse(savedUsers)
-            : ADMIN_USERS;
+            ? JSON.parse(savedUsers) //If savedUsers exists, JSON.parse() converts the stored JSON string into a JavaScript array of admin accounts.
+            : ADMIN_USERS; //If savedUsers does not exist, we use ADMIN_USERS, which contains the default admin accounts imported into the project
     });
 
     const [isEditing, setIsEditing] = useState(false);
@@ -121,7 +108,9 @@ export const Admin = () => {
         setIsEditing(true);
     };
 
-    // Save the updated account
+    // this function allows the administrator to update their username and password.
+    //It also validates the new information, checks whether the username is already being used by another admin,
+    //  saves the changes, and updates the current admin session.
     const saveAccount = () => {
         if (
             !editedUsername.trim() ||
@@ -131,9 +120,10 @@ export const Admin = () => {
                 "Please fill in both fields."
             );
             return;
-        }
+        }//we check whether the administrator entered both a username and a password.
 
-        const usernameExists = adminUsers.some(
+        const usernameExists = adminUsers.some( //Check whether the username already exists
+            //some() method to check whether another admin is already using the entered username. usernameExists will contain true or false
             (admin) =>
                 admin.username === editedUsername.trim() &&
                 admin.id !== currentAdmin.id
@@ -146,26 +136,26 @@ export const Admin = () => {
             return;
         }
 
-        const updatedUsers = adminUsers.map((admin) => {
-            if (admin.id === currentAdmin.id) {
+        const updatedUsers = adminUsers.map((admin) => { //map() to go through all the admin accounts and create a new array.
+            if (admin.id === currentAdmin.id) { //This checks whether the admin currently being examined is the administrator who wants to update their account.
                 return {
                     ...admin,
                     username: editedUsername.trim(),
                     password: editedPassword.trim()
-                };
+                }; //If it is the current admin: We return a new object containing: all the existing properties of that admin, the new username and the new pass
             }
 
-            return admin;
+            return admin; //We return the original admin object without changing anything. Therefore, only the current administrator's account is updated.
         });
 
-        setAdminUsers(updatedUsers);
+        setAdminUsers(updatedUsers); //This updates the adminUsers state with the new array.
 
-        localStorage.setItem(
+        localStorage.setItem( //This saves the updated admin accounts in localStorage. localStorage.setItem() saves the data in the browser.
             ADMIN_STORAGE_KEY,
             JSON.stringify(updatedUsers)
         );
 
-        sessionStorage.setItem(
+        sessionStorage.setItem( //This updates the username stored in sessionStorage for the currently logged-in admin.
             "salt-admin-username",
             editedUsername.trim()
         );
@@ -185,13 +175,13 @@ export const Admin = () => {
 
     // Change an order's status
     const changeOrderStatus = (id, status) => {
-        updateStoredOrder(id, { status });
+        updateStoredOrder(id, { status }); //This means we want to change order with this specific id to "status".
 
         setOrders(
             orders.map((order) =>
                 order.id === id
-                    ? { ...order, status }
-                    : order
+                    ? { ...order, status } //This creates a copy of the order, keeps all its existing information, and replaces its status with the new one.
+                    : order //If the IDs don't match, it returns the original order unchanged
             )
         );
     };
@@ -199,12 +189,12 @@ export const Admin = () => {
     // Delete customer feedback
     const deleteFeedback = (id) => {
         const updatedFeedback = feedback.filter(
-            (item) => item.id !== id
+            (item) => item.id !== id //checks whether each feedback item's ID is different from the ID we want to delete.
         );
 
-        localStorage.setItem(
+        localStorage.setItem( //This saves the updated feedback array in localStorage.
             FEEDBACK_STORAGE_KEY,
-            JSON.stringify(updatedFeedback)
+            JSON.stringify(updatedFeedback) 
         );
 
         setFeedback(updatedFeedback);

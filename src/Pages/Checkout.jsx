@@ -1,14 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-    ArrowLeft,
-    Banknote,
-    CheckCircle2,
-    ShoppingBag,
-    Truck,
-    Utensils
-} from "lucide-react";
+import {ArrowLeft,Banknote,CheckCircle2,ShoppingBag,Truck, Utensils} from "lucide-react";
 
 import { useCart } from "../context/CartContext";
 import { saveOrderLocally } from "../Data/orderStorage";
@@ -46,6 +39,8 @@ export default function Checkout() {
 
     const finalTotal = total + deliveryFee;
 
+    //when the customer enters their name, phone number, or delivery address, 
+    // this function captures the new value and updates the formData state.
     const updateField = (event) => {
         setFormData((previous) => ({
             ...previous,
@@ -55,6 +50,7 @@ export default function Checkout() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        //initially no errors
         setError("");
 
         if (!cartItems.length) {
@@ -86,15 +82,22 @@ export default function Checkout() {
             );
         }
 
-        const details = [
+        //Its purpose is to combine the customer's additional order information into one string before saving the order.
+        const details = [ //We create an array called details to collect the information we want to include with the order.
+            /* I use a ternary operator to check whether the customer selected Dine-in. 
+            If so, I include the table number; otherwise, I add an empty string.
+            Then, I include any additional instructions entered by the customer. 
+            I use filter(Boolean) to remove empty values and join() to combine the remaining information into one string, separated by a bullet*/
             orderType === "Dine-in"
                 ? `Table: ${formData.tableNumber.trim()}`
                 : "",
             formData.details.trim()
         ]
             .filter(Boolean)
-            .join(" • ");
+            .join(" • "); //filter() creates a new array containing only the elements that pass a condition. Boolean converts each element into true or false.
 
+            //Its purpose is to create an object called orderData containing all the information about the customer's order.
+            //This object organizes the customer information, order type, items, total price, and order status before the order is saved.
         const orderData = {
             customerName: formData.customerName.trim(),
             phone: formData.phone.trim(),
@@ -115,13 +118,14 @@ export default function Checkout() {
             status: "Pending"
         };
 
+        //the purpose of this is to save the order, update the page, clear the shopping cart, and handle any errors that might occur during submission.
         try {
-            setSubmitting(true);
+            setSubmitting(true); //This indicates that the order is currently being submitted.
 
-            const savedOrder = saveOrderLocally(orderData);
-
-            setPlacedOrder(savedOrder);
-            clearCart();
+            const savedOrder = saveOrderLocally(orderData); //Here, we call the saveOrderLocally() function and pass it the orderData object we created earlier.
+            //We store the result because the function may add additional information to the order, such as an order ID and submission date.
+            setPlacedOrder(savedOrder); //We use it so the Checkout page can display the order confirmation and its information.
+            clearCart(); // we clear the cart after submitting
 
             showNotification(
                 "Your order was submitted successfully."
@@ -133,11 +137,13 @@ export default function Checkout() {
                 "Unable to save your order. Please try again."
             );
         } finally {
-            setSubmitting(false);
+            setSubmitting(false); //Because the submission process has finished, whether it succeeded or failed.
         }
     };
 
-    // Order Confirmation
+    // This code displays the Order Confirmation page after the customer successfully submits an order in your SALT website.
+    //Its main purpose is to show the customer that their order was placed successfully, 
+    // display their order ID, and provide a button to return to the Home page.
     if (placedOrder) {
         return (
             <div className="min-h-[70vh] bg-[#fffdf8] px-5 py-16">
