@@ -8,7 +8,7 @@ export const Layout = ({ children }) => {
     const { itemCount } = useCart();
     const hasStandaloneLayout = location.pathname === "/Login" || location.pathname.startsWith("/admin");
 
-    if (hasStandaloneLayout) {
+    if (hasStandaloneLayout) { //children is the code of login and admin
         return children;
     }
 
